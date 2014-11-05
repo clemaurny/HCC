@@ -1,0 +1,74 @@
+{include="header"}
+
+<!--
+ @nom: index
+ @auteur: Idleman (idleman@idleman.fr)
+ @description: Page d'accueil
+-->
+
+{if="isset($myUser)"}
+<p class="ipAddress">Bienvenue {$myUser['login']}</p>	
+<p> </p>
+<ul class="nav nav-tabs" id="myTab">
+{$first=0}
+{loop="places"}
+<li class="{if="$first==0"}{$first=1}active{/if}"><a href="#{$key}">{$value['name']}</a></li>
+{/loop}
+
+
+
+
+</ul>
+ 
+<div class="tab-content">
+{$first=0}
+{loop="places"}
+{$currentPlace=$key}
+<div class="tab-pane {if="$first==0"}{$first=1}active{/if}" id="{$key}">
+
+      <div class="row">
+
+
+{loop="engines"}
+
+	{if="$value2['place']==$currentPlace"}
+	
+<div class="span3">
+          <h5>{$value2['name']}</h5>
+		  <a class="thumbnail" href="#"><img src="../../{$value['picture']}"></a>
+		   <br/>
+		  <p><span class="glyphicon glyphicon-dashboard"> {$value2['type']}</span></p>
+		  <p>{$value2['description']}
+		  	<ul>
+		  		<li>Code radio : <code>{$value2['code']}</code></li>
+		  		<li>Id : <code>{$key2}</code></li>
+		  		<li>Emplacement : <code>{$places[$value2['place']]['name']}</code></li>
+		  	</ul>
+		  </p>
+		  	 <div class="btn-toolbar">
+				<div class="btn-group">
+				<a class="btn {if="$value2['state']=='on'"}btn-success{/if}" href="action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=on"><span class="glyphicon glyphicon-ok {if="$value2['state']=='on'"}icon-white{/if}"></span></a>
+				<a class="btn {if="$value2['state']=='off'"}btn-danger{/if}" href="action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=off&amp;CURRENT_STATE={$value2['state']}"><span class="glyphicon glyphicon-off {if="$value2['state']=='off'"}icon-white{/if}"></span></a>
+				</div>
+			</div>
+        </div>
+        {/if}
+{/loop}
+		<div class="span4" id="infoConso">
+			<p>Fonctionne depuis {$duration}</p>
+			<p><span class="glyphicon glyphicon-asterisk">Consommation : {$consommation} kWh</span></p>
+		</div>
+      </div>
+
+
+
+</div>
+
+{/loop}
+
+</div>
+
+	  {else}
+		Vous devez vous connecter pour controler cet espace
+	  {/if}
+{include="footer"}
