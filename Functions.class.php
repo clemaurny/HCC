@@ -261,7 +261,7 @@ class Functions
 	 
 	 		$conso = 300 * 3 * $power;
 	 		$decimalHours = $timeConsoHours - floor($timeConsoHours);
-	 		$Hours = intval($timeConsoHours);
+	 		$Hours = intval($timeConsoHours-($timeConsoDay*24));
 	 		$min = round(($decimalHours*60),0);
 	 		$min = $min > 10 ? $min : "0".$min;
 	 		$timeConso = $timeConsoDay >= 1 ? intval($timeConsoDay)." J, ".$Hours."h ".
