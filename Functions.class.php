@@ -244,31 +244,34 @@ class Functions
 		'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 		}
 
-	 /**
-	 * Retourne une durée entre deux timestamps
-	 * @author Clement 
-	 * 
-	 * @param <timestamp> $timeStart
-	 * @param <timestamp> $timeEnd
-	 * @return $timeConso;
-	 **/
+ /**
+         * Retourne une durée entre deux timestamps
+         * @author Clement
+         *
+         * @param <timestamp> $timeStart
+         * @param <timestamp> $timeEnd
+         * @return $timeConso;
+         **/
 
-	 public function durationEngine($timeStart, $timeEnd, $power) {
+         public function durationEngine($timeStart, $timeEnd, $power) {
 
-	 		$timeConso = $timeEnd - $timeStart;
-	 		$timeConsoDay = $timeConso/60/60/24;
-	 		$timeConsoHours = $timeConso/60/60;
-	 
-	 		$conso = 300 * 3 * $power;
-	 		$decimalHours = $timeConsoHours - floor($timeConsoHours);
-	 		$Hours = intval($timeConsoHours-($timeConsoDay*24));
-	 		$min = round(($decimalHours*60),0);
-	 		$min = $min > 10 ? $min : "0".$min;
-	 		$timeConso = $timeConsoDay >= 1 ? intval($timeConsoDay)." J, ".$Hours."h ".
-	 		round(($decimalHours*60),0) : '' .$Hours."h ".$min;
-	 		return array($conso/1000,$timeConso);
-	 }
+                        $timeConso = $timeEnd - $timeStart;
+                        $timeConsoDay = $timeConso/60/60/24;
+                        $timeConsoHours = $timeConso/60/60;
 
+                        $conso = 300 * 3 * $power;
+                        $decimalHours = $timeConsoHours - floor($timeConsoHours);
+                        $Hours = $timeConsoDay >=1 ? intval($timeConsoHours-(intval($timeConsoDay)*24)):
+                        intval($timeConsoHours);
+                        $min = round(($decimalHours*60),0);
+                        $min = $min > 10 ? $min : "0".$min;
+                        $min = $min >= 60 ? 0 : $min;
+                        $Hours = $min>=60 ? $Hours+1 : $Hours;
+                        $timeConso = $timeConsoDay >= 1 ? intval($timeConsoDay)." J, ".$Hours."h ".
+                        $min : '' .$Hours."h ".$min;
+                        return array($conso/1000,$timeConso);
+
+         }
 
 
       public static function store($datas){
