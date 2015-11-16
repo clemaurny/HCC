@@ -9,7 +9,7 @@
 
     <!-- Le styles -->
     <link href="./templates/hcc/././css/bootstrap.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="./templates/hcc/././css/bootstrap-glyphicons.css" rel="stylesheet">
  <style type="text/css">
       body {
         padding-top: 60px;
@@ -24,6 +24,21 @@
       }
       #infoConso {
         margin-top: 44px;
+      }
+      .sunset{
+        background-color:#f7f7f9; 
+        border:1px solid bottom;
+        border-radius:3px;
+        display: block;
+        height:45px;
+        font-size:0.9em;
+         height: 49px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        width: 90px;
+    
       }
     </style>
     <link href="./templates/hcc/././css/bootstrap-responsive.css" rel="stylesheet">

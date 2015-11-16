@@ -33,10 +33,14 @@ if(isset($_SESSION['myUser'])){
 	$tpl->assign('myUser',unserialize($_SESSION['myUser']));
 }
 
+if(isset($_SESSION["sunset"])){
+ $tpl->assign('sunset',$_SESSION["sunset"]);
+}
 //Récuperation et sécurisation de toutes les variables POST et GET
 $_ = array('action'=>'');
 foreach($_POST as $key=>$val){
 $_[$key]=Functions::secure($val);
+
 }
 foreach($_GET as $key=>$val){
 $_[$key]=Functions::secure($val);

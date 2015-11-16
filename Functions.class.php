@@ -12,11 +12,11 @@ class Functions
 	public $debug=0;
 	const CRYPTKEY = 'zr_e65$^vg41^948e*586"';
 	/**
-	 * Securise la variable utilisateur entrée en parametre
+	 * Securise la variable utilisateur entrï¿½e en parametre
 	 * @author Valentin
-	 * @param<String> variable a sécuriser
+	 * @param<String> variable a sï¿½curiser
 	 * @param<Integer> niveau de securisation
-	 * @return<String> variable securisée
+	 * @return<String> variable securisï¿½e
 	 */
 
 	public static function secure($var,$level = 1){
@@ -27,12 +27,18 @@ class Functions
 	}
 
 
-
+public static function getSunset($lat=45.598359,$lon=5.217153) {
+	$date_sunset = date_sunset(time(), SUNFUNCS_RET_STRING,$lat, $lon,90, 1);
+	$date_sunset =  explode(':',$date_sunset);
+	$hours =$date_sunset[0];
+	$min = $date_sunset[1];
+	return $hours." ".$min;
+}
 
 
 
 	/**
-	 * Convertis la chaine passée en timestamp quel que soit son format
+	 * Convertis la chaine passï¿½e en timestamp quel que soit son format
 	 * (prend en charge les formats type dd-mm-yyy , dd/mm/yyy, yyyy/mm/ddd...)
 	 */
 	public static function toTime($string){
@@ -70,11 +76,11 @@ class Functions
 	}
 
 	/**
-	 * Retourne une version tronquée au bout de $limit caracteres de la chaine fournie
+	 * Retourne une version tronquï¿½e au bout de $limit caracteres de la chaine fournie
 	 * @author Valentin
 	 * @param<String> message a tronquer
 	 * @param<Integer> limite de caracteres
-	 * @return<String> chaine tronquée
+	 * @return<String> chaine tronquï¿½e
 	 */
 	public static function truncate($msg,$limit){
 		$msg = utf8_encode(html_entity_decode($msg));
@@ -110,7 +116,7 @@ class Functions
 	}
 
 	/**
-	 * Définis si la chaine passée en parametre est une url ou non
+	 * Dï¿½finis si la chaine passï¿½e en parametre est une url ou non
 	 */
 	public static function isUrl($url){
 		$return =false;
@@ -121,7 +127,7 @@ class Functions
 	}
 
 	/**
-	 * Définis si la chaine passée en parametre est une couleur héxadécimale ou non
+	 * Dï¿½finis si la chaine passï¿½e en parametre est une couleur hï¿½xadï¿½cimale ou non
 	 */
 	public static function isColor($color){
 		$return =false;
@@ -132,7 +138,7 @@ class Functions
 	}
 
 	/**
-	 * Définis si la chaine passée en parametre est un mail ou non
+	 * Dï¿½finis si la chaine passï¿½e en parametre est un mail ou non
 	 */
 	public static function isMail($mail){
 		$return =false;
@@ -143,7 +149,7 @@ class Functions
 	}
 
 	/**
-	 * Définis si la chaine passée en parametre est une IP ou non
+	 * Dï¿½finis si la chaine passï¿½e en parametre est une IP ou non
 	 */
 	public static function isIp($ip){
 		$return =false;
@@ -240,12 +246,12 @@ class Functions
 	}
 
 		public static function stripAccents($string){
-			return strtr(html_entity_decode($string),'àáâãäçèéêëìíîïñòóôõöùúûüıÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜİ',
+			return strtr(html_entity_decode($string),'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
 		'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 		}
 
  /**
-         * Retourne une durée entre deux timestamps
+         * Retourne une durï¿½e entre deux timestamps
          * @author Clement
          *
          * @param <timestamp> $timeStart

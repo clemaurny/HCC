@@ -38,17 +38,33 @@
 		  <a class="thumbnail" href="#"><img src="../../{$value['picture']}"></a>
 		   <br/>
 		  <p><span class="glyphicon glyphicon-dashboard"> {$value2['type']}</span></p>
+		  <ul>
+		  	    {if="$value2['power']=isset($value2['power'])"}
+		  	    <li>Puissance: <code>{$value2['power']} W </code></li>
+		  	    {/if}
+		  		
 		  <p>{$value2['description']}
-		  	<ul>
-		  		<li>Code radio : <code>{$value2['code']}</code></li>
-		  		<li>Id : <code>{$key2}</code></li>
-		  		<li>Emplacement : <code>{$places[$value2['place']]['name']}</code></li>
+		  	
 		  	</ul>
 		  </p>
+	
+		  		{if="$key2=='id-13'"}
+		  	 			{if="isset($sunset)"}
+		  				<span class="sunset">éclairage à :{$sunset}</span>
+		  				{/if}
+		  	 		{/if}	
 		  	 <div class="btn-toolbar">
+		  	 		
 				<div class="btn-group">
-				<a class="btn {if="$value2['state']=='on'"}btn-success{/if}" href="action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=on"><span class="glyphicon glyphicon-ok {if="$value2['state']=='on'"}icon-white{/if}"></span></a>
-				<a class="btn {if="$value2['state']=='off'"}btn-danger{/if}" href="action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=off&amp;CURRENT_STATE={$value2['state']}"><span class="glyphicon glyphicon-off {if="$value2['state']=='off'"}icon-white{/if}"></span></a>
+					
+					{if="$key2=='id-13'"}
+						
+		  				<a class="btn btn-default" href="action.php?action=UPDATE_SUNSET"><span class="glyphicon glyphicon-time"></span></a>
+		  					
+		  			 {else}
+					<a class="btn {if="$value2['state']=='on'"}btn-success{/if}" href="action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=on"><span class="glyphicon glyphicon-ok {if="$value2['state']=='on'"}icon-white{/if}"></span></a>
+					<a class="btn {if="$value2['state']=='off'"}btn-danger{/if}" href="action.php?engine={$key}&amp;action=CHANGE_STATE&amp;code={$value2['code']}&amp;state=off&amp;CURRENT_STATE={$value2['state']}"><span class="glyphicon glyphicon-off {if="$value2['state']=='off'"}icon-white{/if}"></span></a>
+					{/if}
 				</div>
 			</div>
         </div>

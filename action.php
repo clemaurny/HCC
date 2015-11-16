@@ -24,11 +24,20 @@ break;
 
 case 'LOGIN':
     $login = $db['logins']['id-1'];
+var_dump(sha1($_['password']));
 	if($_['email']==$login["email"] && sha1($_['password'])==$login['pass']){
 		$_SESSION['myUser'] = serialize(array('login'=>$login["email"]));
 	}else{
 		exit('Bad code');
 	}
+   header('location: index.php');
+break;
+
+case 'UPDATE_SUNSET':
+	//$point = __DIR__."/sunset.php";
+	//include($point);
+	$_SESSION["sunset"] = Functions::getSunset(45.4,5.21);
+	var_dump($_SESSION["sunset"]);
 	header('location: index.php');
 break;
 
@@ -79,13 +88,14 @@ case 'CHANGE_STATE':
 	
         $dateN = new DateTime('Now');
         $dateN->format('d/m/Y H:i:s');
-
+        $state = $_GET['state'];
+        $state = $state == "off" ? 0 : 1; 
 	if($_GET['code']=='-1'){
 		foreach($db['engines'] as $id=>$engine){
-			system('./radioEmission '.PIN.' '.SENDER.' '.$engine['code'].' '.$_GET['state']);
+			system('sudo /radioEmission '.PIN.' '.SENDER.' '.$engine['code'].' '.$state);
 		}
 	}else{
-		system('./radioEmission '.PIN.' '.SENDER.' '.$_GET['code'].' '.$_GET['state']);
+		system('sudo ./radioEmission '.PIN.' '.SENDER.' '.$_GET['code'].' '.$state);
 	}
 	$db[$_GET['code']] = $_GET['state'];
 	
@@ -184,7 +194,7 @@ break;
 				
 	break;
 	default:
-		echo 'Aucune action correcte n\'est spécifiée';
+		echo 'Aucune action correcte n\'est spï¿½cifiï¿½e';
 	break;
 
 }

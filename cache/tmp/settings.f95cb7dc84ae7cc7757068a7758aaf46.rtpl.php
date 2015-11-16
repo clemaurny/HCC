@@ -108,6 +108,7 @@
 				<?php $counter1=-1; if( isset($engines) && is_array($engines) && sizeof($engines) ) foreach( $engines as $key1 => $value1 ){ $counter1++; ?>
 				<tr>
 					<td><strong><?php echo $value1['name'];?></strong></td>
+
 					<td><code><?php echo $places[$value1['place']]['name'];?></code></td>
 					<td>
 						<!--<a class="btn btn-info" href="./settings.php?engine=<?php echo $key1;?>"><i class="icon-edit icon-white"></i></a> -->

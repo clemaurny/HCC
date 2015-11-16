@@ -3,7 +3,7 @@
 	//Numéro WiringPi du pin raspberry branché a l'emetteur radio
 	define('PIN',0);
 	//Code télécommande du raspberry (ne dois pas exceder les 2^26)
-	define('SENDER',12352611);
+	define('SENDER',23234675);
 	
 	//Répertoire de stockage des images
 	define('PICTURE_FOLDER','pictures');
