@@ -34,7 +34,7 @@ class Programmable {
               
           } 
           else {
-                  $newCrontab[] = $ligne;  
+                  $newCrontab[] = $rule;  
               }
            if ($rule == $this>start) { $this->isSection = true; }
         }
@@ -69,7 +69,7 @@ class Programmable {
                 //remove cron for lights sunset
                 $this->id = $id;
                 $this->removeScript($this->id);
-                $this->newCron[]='#'.$id.' '.$comm;
+                $this->newCron[]='#'.$this->id.' '.$comm;
                 $this->newCron[]= $min.' '.$hour.' '.$day.' '.$week.' '.$month.' '.$cmd;
                 $this->newRule == true;
             }
