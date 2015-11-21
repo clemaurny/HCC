@@ -36,7 +36,7 @@ class Programmable {
           else {
                   $newCrontab[] = $rule;  
               }
-           if ($rule == $this>start) { $this->isSection = true; }
+           if ($rule == $this->start) { $this->isSection = true; }
         }
         $this->newCron = $newCrontab;
         return $this->newCron;
@@ -65,9 +65,9 @@ class Programmable {
 
         if ($row == $this->end) {
             $id = $maxNb+1;
-            if($id >=3){
+            if($id >3){
                 //remove cron for lights sunset
-                $this->id = $id;
+                $this->id = $maxNb;
                 $this->removeScript($this->id);
                 $this->newCron[]='#'.$this->id.' '.$comm;
                 $this->newCron[]= $min.' '.$hour.' '.$day.' '.$week.' '.$month.' '.$cmd;
