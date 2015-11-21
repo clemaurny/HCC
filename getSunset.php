@@ -27,7 +27,7 @@ class Programmable {
           if($this->isSection == true) {
               $words = explode(' ',$rule);
               
-              if($words[0] == "#" && $words[1] != $this->id){
+              if($words[0] == "#" && $words[1] != $id){
                   
                   $newCrontab[] = $rule;
               }
@@ -65,13 +65,13 @@ class Programmable {
 
         if ($row == $this->end) {
             $id = $maxNb+1;
-            if($id >2){
+            if($id >=3){
                 //remove cron for lights sunset
                 $this->id = $id;
                 $this->removeScript($this->id);
                 $this->newCron[]='#'.$this->id.' '.$comm;
                 $this->newCron[]= $min.' '.$hour.' '.$day.' '.$week.' '.$month.' '.$cmd;
-                $this->newRule == true;
+                $this->newRule = true;
             }
             else {
                 $newCrontab []='#'.$id.' '.$comm;
@@ -94,7 +94,7 @@ class Programmable {
     }
     $f = fopen('/tmp/cron', 'w');
     if($this->newRule == true){
-         fwrite($f, implode("\n", $this>newCron));
+         fwrite($f, implode("\n", $this->newCron));
     }
     else {
           fwrite($f, implode("\n", $newCrontab));
