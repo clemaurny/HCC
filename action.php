@@ -34,8 +34,7 @@ var_dump(sha1($_['password']));
 break;
 
 case 'UPDATE_SUNSET':
-	//$point = __DIR__."/sunset.php";
-	//include($point);
+
 	$_SESSION["sunset"] = Functions::getSunset(45.4,5.21);
 	var_dump($_SESSION["sunset"]);
 	header('location: index.php');

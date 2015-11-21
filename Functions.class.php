@@ -28,10 +28,17 @@ class Functions
 
 
 public static function getSunset($lat=45.598359,$lon=5.217153) {
+	require_once(__DIR__.'/getSunset.php');
+	$cmd = 'sudo sh /var/www/lampes.sh';
 	$date_sunset = date_sunset(time(), SUNFUNCS_RET_STRING,$lat, $lon,90, 1);
 	$date_sunset =  explode(':',$date_sunset);
 	$hours =$date_sunset[0];
 	$min = $date_sunset[1];
+	$days= "*";
+	$months = "*";
+	$daysWeek = "*";
+	addScript($min,$hours,$days,$months,$daysWeek,$cmd,'switch on lights UTC+1 sunset');
+
 	return $hours." ".$min;
 }
 
