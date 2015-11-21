@@ -56,14 +56,15 @@ class Programmable {
        
         if($this->isSection == true){
             $word = explode(' ',$row);
-		    var_dump($word);
             if($word[0] == '#' && $word[1]>$maxNb){
                 $maxNb = $word[1];
+                echo "max id".$maxNb;
             }
         }
         if ($row == $this->start) { $this->isSection = true; }
 
         if ($row == $this->end) {
+            echo "end row";
             $id = $maxNb+1;
             if($id >3){
                 //remove cron for lights sunset
