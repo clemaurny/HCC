@@ -73,7 +73,7 @@ class Programmable {
                 $this->newCron[]='#'.$this->id.' '.$comm;
                 $this->newCron[]= $min.' '.$hour.' '.$day.' '.$week.' '.$month.' '.$cmd;
                 $this->newRule = true;
-                var_dump($this->newCron)
+                var_dump($this->newCron);
             }
             else {
                 $newCrontab []='#'.$id.' '.$comm;
