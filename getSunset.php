@@ -38,8 +38,8 @@ class Programmable {
               }
            if ($rule == $this>start) { $this->isSection = true; }
         }
-        $this->newCron = $newCrontab
-        return $this->newCron
+        $this->newCron = $newCrontab;
+        return $this->newCron;
     }
     
     function addScript($min , $hour, $day,$month, $week, $cmd, $comm) {
