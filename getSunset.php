@@ -67,11 +67,13 @@ class Programmable {
             $id = $maxNb+1;
             if($id >3){
                 //remove cron for lights sunset
+                echo "script > 3";
                 $this->id = $maxNb;
                 $this->removeScript($this->id);
                 $this->newCron[]='#'.$this->id.' '.$comm;
                 $this->newCron[]= $min.' '.$hour.' '.$day.' '.$week.' '.$month.' '.$cmd;
                 $this->newRule = true;
+                var_dump($this->newCron)
             }
             else {
                 $newCrontab []='#'.$id.' '.$comm;
