@@ -3,7 +3,7 @@
 class Programmable {
     
     private $id;
-    private $isSection=false;
+    private $isSection;
     public $start;
     public $end;
     private $newCron;
@@ -18,9 +18,9 @@ class Programmable {
 
         $newCrontab = Array();                          /* pour chaque cellule une ligne du nouveau crontab */
 
-        $isSection = false;
+        $this->isSection = false;
         
-        exec('crontab -l', $oldCrontab);
+        exec('sudo crontab -l', $oldCrontab);
         
         foreach($oldCrontab as $rule) {
           
@@ -29,16 +29,17 @@ class Programmable {
               
               if($words[0] == "#" && $words[1] != $id){
                   
-                  $newCrontab[] = $rule;
+                  $this->newCron[] = $rule;
               }
               
           } 
           else {
-                  $newCrontab[] = $rule;  
+                  $this->newCron[] = $rule;  
               }
            if ($rule == $this->start) { $this->isSection = true; }
         }
         $this->newCron = $newCrontab;
+        
         return $this->newCron;
     }
     
@@ -48,7 +49,7 @@ class Programmable {
     $oldCron = array();
     $newCrontab = array();
 
-    $isSection = false;
+    $this->isSection = false;
     $maxNb =0 ;
     exec('sudo crontab -l', $oldCron);
 
@@ -58,32 +59,34 @@ class Programmable {
             $word = explode(' ',$row);
             if($word[0] == '#' && $word[1]>$maxNb){
                 $maxNb = $word[1];
-                echo "max id".$maxNb;
             }
-        }
-        if ($row == $this->start) { $this->isSection = true; }
-
-        if ($row == $this->end) {
-            echo "end row";
             $id = $maxNb+1;
             if($id >3){
                 //remove cron for lights sunset
-                echo "script > 3";
-                $this->id = $maxNb;
+                $this->id = $id;
                 $this->removeScript($this->id);
                 $this->newCron[]='#'.$this->id.' '.$comm;
                 $this->newCron[]= $min.' '.$hour.' '.$day.' '.$week.' '.$month.' '.$cmd;
                 $this->newRule = true;
                 var_dump($this->newCron);
             }
-            else {
+            else{
+                 $this->newCron[]= $row;
+            }
+        }
+        if ($row == $this->start) { $this->isSection = true; }
+
+        if ($row == $this->end) {
+            $id = $maxNb+1;
+            
                 $newCrontab []='#'.$id.' '.$comm;
 
                 $newCrontab []= $min.' '.$hour.' '.$day.' '.$week.' '.$month.' '.$cmd;
-            }
+            
             
         }
         $newCrontab[] = $row;
+       
 
 
 
