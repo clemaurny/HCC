@@ -88,7 +88,11 @@ case 'CHANGE_STATE':
         $dateN = new DateTime('Now');
         $dateN->format('d/m/Y H:i:s');
         $state = $_GET['state'];
-        $state = $state == "off" ? "off" : "on"; 
+        $state = $state == "off" ? "off" : "on";
+        if($_GET['code'] == '2') {
+            $state = $state == "off" ? 0 : 1;
+        }
+
 	if($_GET['code']=='-1'){
 		foreach($db['engines'] as $id=>$engine){
 			system('sudo /radioEmission '.PIN.' '.SENDER.' '.$engine['code'].' '.$state);
